@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Navigation";
 import Message from "./components/Message";
 import MoviesView from "./views/Movies";
+import ActorsView from "./views/Actors";
 
 const client = new ApolloClient({
   uri: "http://localhost:8000/graphql/"
@@ -21,6 +22,7 @@ class App extends React.Component {
           <div className="container">
             <Route exact path="/" component={Message} />
             <Route path="/movies" component={MoviesView} />
+            <Route path="/actors" component={ActorsView} />
           </div>
         </Router>
       </ApolloProvider>

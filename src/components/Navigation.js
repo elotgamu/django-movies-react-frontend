@@ -34,6 +34,11 @@ class Navigation extends React.Component {
                   Movies
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/actors">
+                  Actors
+                </Link>
+              </li>
               {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
