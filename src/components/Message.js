@@ -7,7 +7,7 @@ const Message = () => {
 
       <p>A Django - Graphql - React app!!!</p>
       <p>
-        An apollo powered app
+        An apollo powered app &nbsp;
         <span role="img" aria-label="Rocket">
           🚀
         </span>

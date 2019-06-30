@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 
 import GET_MOVIES from "../queries/movies/getMovies";
@@ -41,7 +41,9 @@ class Movies extends React.Component {
             const moviesToDisplay = this.state.movies.map((movie, index) => {
               return (
                 <li className="list-group-item" key={index}>
-                  {movie.title}
+                  <Link to={{ pathname: `/movies/${movie.id}` }}>
+                    {movie.title}
+                  </Link>
                 </li>
               );
             });
