@@ -1,5 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
+import { Link } from "react-router-dom";
 
 import GET_MOVIE_DETAILS from "../queries/movies/getMovieDetail";
 
@@ -10,6 +11,16 @@ class MovieDetails extends React.Component {
     let movieData = this.state.movie;
     this.setState({
       movie: { ...movieData, ...fetchedMovie }
+    });
+  };
+
+  editMovie = evt => {
+    evt.preventDefault();
+    const movieInfo = this.state.movie;
+    delete movieInfo.__typename;
+    this.props.history.push({
+      pathname: `/movies/${this.props.match.params.id}/edit/`,
+      state: { movie: this.state.movie }
     });
   };
 
@@ -35,7 +46,13 @@ class MovieDetails extends React.Component {
               let ActorsInMovies = [];
               if (this.state.movie.actors) {
                 ActorsInMovies = this.state.movie.actors.map(actor => {
-                  return <li key={actor.id}>{actor.name}</li>;
+                  return (
+                    <li key={actor.id}>
+                      <Link to={{ pathname: `/actors/${actor.id}` }}>
+                        {actor.name}
+                      </Link>
+                    </li>
+                  );
                 });
               }
 
@@ -50,6 +67,16 @@ class MovieDetails extends React.Component {
                   </p>
                   <p>Actores:</p>
                   <ul>{ActorsInMovies}</ul>
+
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={evt => {
+                      this.editMovie(evt);
+                    }}
+                  >
+                    Edit
+                  </button>
                 </React.Fragment>
               );
             }

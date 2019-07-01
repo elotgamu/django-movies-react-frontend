@@ -1,5 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
+import { Link } from "react-router-dom";
 
 import GET_ACTORS from "../queries/actors/getActors";
 
@@ -39,7 +40,17 @@ class Actors extends React.Component {
 
           if (data) {
             const Actors = this.state.actors.map((actor, index) => {
-              return <li key={actor.id}>{actor.name}</li>;
+              return (
+                <li key={actor.id}>
+                  <Link
+                    title={actor.name}
+                    to={{ pathname: `/actors/${actor.id}` }}
+                    role="link"
+                  >
+                    {actor.name}
+                  </Link>
+                </li>
+              );
             });
 
             return <ul>{Actors}</ul>;
